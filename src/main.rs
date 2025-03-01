@@ -139,7 +139,7 @@ fn integration(args:&ArgMatches){
             println!("export PATH=\"~/devsocks/system/bin/:$PATH\"")
         }
         shell if shell == &"bash".to_string( )=>{
-            println!("PATH=$PATH:~/devsocks/system/bin/")
+            println!("PATH=~/devsocks/system/bin/:$PATH")
         }
         shell if shell == &"fish".to_string()=>{
             println!("fish_add_path -p \"~/devsocks/system/bin\"")
