@@ -133,23 +133,23 @@ fn init_devsock_config(){
 }
 
 fn integration(args:&ArgMatches){
-    let shell = args.get_one::<&str>("shell").unwrap();
+    let shell = args.get_one::<String>("shell").unwrap();
     match shell{
-        &"zsh"=>{
+        shell if shell ==  &"zsh".to_string()=>{
             println!("export PATH=\"~/devsocks/system/bin/:$PATH\"")
         }
-        &"bash"=>{
+        shell if shell == &"bash".to_string( )=>{
             println!("PATH=$PATH:~/devsocks/system/bin/")
         }
-        &"fish"=>{
+        shell if shell == &"fish".to_string()=>{
             println!("fish_add_path -p \"~/devsocks/system/bin\"")
         }
-        &"nu"=>{
+        shell if shell == &"nu".to_string()=>{
             println!("env.PATH = ($env.PATH | split row (char esep) | append \"~/devsocks/system/bin\")")
         }
         _=>{
             let shells = vec!["bash","zsh","fish","nu"];
-            println!("Invalid shell!, valid shells include {}",shells.join("\n"))
+            println!("Invalid shell!, valid shells include :\n{}",shells.join("\n"))
         }
     }
 }
